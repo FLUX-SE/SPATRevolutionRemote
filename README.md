@@ -17,13 +17,13 @@ A few little steps are involved in configuring this,
   - [Windows (64-bit)](https://github.com/jean-emmanuel/open-stage-control/releases/download/v1.17.0/open-stage-control-1.17.0-win32-x64.zip)
 
 
-- Download the [Open Stage Control - SPAT Revolution Remote Package file](https://github.com/FLUX-SE/SPATRevolutionRemote/raw/c787847ea1c1651f66c6f4466f60f0cc3aad559f/Source/SPATRevolutionRemote_1.13.6.zip). This zip package contains both the patch & config files. It is as well available via the [FLUX Center Application](https://www.flux.audio/download/) which downloads all the resources (patch & config files) to the local computer.
+- Download the [Open Stage Control - SPAT Revolution Remote Package file](https://github.com/FLUX-SE/SPATRevolutionRemote/raw/c787847ea1c1651f66c6f4466f60f0cc3aad559f/Source/SPATRevolutionRemote_1.14.zip). This zip package contains both the patch & config files. It is as well available via the [FLUX Center Application](https://www.flux.audio/download/) which downloads all the resources (patch & config files) to the local computer.
  - Default location for the package to be unzipped:
     - macOS: ```Library/Application Support/Flux/SPAT Remote Server```
     - Windows: ```Program Files/Flux/SPAT Remote Server```
 
 
-- Open the Open Stage Control application and configure it. This can be done manually but config file are provided in the above package, both for macOS and Windows. These config file can be simply loaded to Open Stage Control pressing the three dots on the right side of the interface.
+- Open the Open Stage Control application and configure it. This can be done manually but config file are provided in the above package, both for macOS and Windows. These config file can be simply loaded to Open Stage Control pressing the three dots on the right side of the interface.     
 ![Load Config](https://media.githubusercontent.com/media/FLUX-SE/doc_images/main/SpatR/ThirdParty/SPATRevolutionRemoteLoadConfig.png)
 ![SPAT Revolution Remote Config](https://media.githubusercontent.com/media/FLUX-SE/doc_images/main/SpatR/ThirdParty/SPATRevolutionRemoteConfig.png)
 
