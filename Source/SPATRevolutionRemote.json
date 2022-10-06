@@ -1120,7 +1120,7 @@
                 "origin": 0,
                 "onValue": "var xsend = get('variable_xpos')\nvar ysend = get('variable_ypos')\nvar src = get('switch_srcSelMain')\n\nsend('/adm/obj/' + src + '/xyz', xsend, ysend, value)\n",
                 "onCreate": "",
-                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/xyz', 'touch')\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/xyz', 'release')\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
+                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/xyz', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/xyz', 'release')\n}",
                 "lock": false
               },
               {
@@ -2428,7 +2428,7 @@
                 "keyBinding": "",
                 "keyRepeat": true,
                 "keyType": "keydown",
-                "onValue": "set(\"spat_radiation_azimuth\", value[0])\nset(\"spat_radiation_elev\", value[1])\nset(\"spat_radiation_distance\", value[2])",
+                "onValue": "set(\"spat_radiation_azimuth\", value[0])\nset(\"spat_radiation_elevation\", value[1])\nset(\"spat_radiation_distance\", value[2])",
                 "onCreate": "",
                 "onKeyboard": "",
                 "lock": false
@@ -3265,7 +3265,7 @@
                 "spring": false,
                 "doubleTap": true,
                 "range": {
-                  "min": 0,
+                  "min": -1,
                   "max": 1
                 },
                 "logScale": false,
@@ -3641,7 +3641,7 @@
                 "spring": false,
                 "doubleTap": true,
                 "range": {
-                  "min": 0,
+                  "min": -1,
                   "max": 1
                 },
                 "logScale": false,
@@ -3951,6 +3951,42 @@
                 "keyBinding": "",
                 "keyRepeat": true,
                 "keyType": "keydown"
+              },
+              {
+                "type": "variable",
+                "lock": false,
+                "id": "variable_dualZ1",
+                "comments": "",
+                "value": "",
+                "default": "",
+                "linkId": "",
+                "address": "/adm/obj/@{switch_srcDual1}/xyz",
+                "preArgs": "",
+                "typeTags": "",
+                "decimals": 2,
+                "target": "",
+                "ignoreDefaults": false,
+                "bypass": false,
+                "onCreate": "",
+                "onValue": "set('spat_srcDual1_z', value[2] )"
+              },
+              {
+                "type": "variable",
+                "lock": false,
+                "id": "variable_dualZ2",
+                "comments": "",
+                "value": "",
+                "default": "",
+                "linkId": "",
+                "address": "/adm/obj/@{switch_srcDual2}/xyz",
+                "preArgs": "",
+                "typeTags": "",
+                "decimals": 2,
+                "target": "",
+                "ignoreDefaults": false,
+                "bypass": false,
+                "onCreate": "",
+                "onValue": "set('spat_srcDual2_z', value[2] )"
               }
             ],
             "tabs": [],
@@ -4081,7 +4117,7 @@
             "logScaleX": false,
             "logScaleY": false,
             "sensitivity": 1,
-            "onTouch": "",
+            "onTouch": "var src = get('switch_srcMulti1')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/xyz', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/xyz', 'release')\n}",
             "doubleTap": false
           },
           {
@@ -6502,7 +6538,7 @@
                     "sensitivity": 1,
                     "steps": "",
                     "origin": "auto",
-                    "onTouch": ""
+                    "onTouch": "var n  = getProp(\"parent\", \"variables\").n\nvar src = get('variable_mx'+n+'')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/gain', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/gain', 'release')\n}"
                   },
                   {
                     "type": "button",
@@ -7773,7 +7809,7 @@
                         "origin": "auto",
                         "onValue": "var src = get('switch_srcSelMain')\n\nvar val = Math.pow(10, value/20)\nsend('/adm/obj/' + src + '/s/', val)",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/s', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/s', 'release')\n}",
                         "lock": false,
                         "knobSize": "auto",
                         "horizontal": false,
@@ -7830,7 +7866,7 @@
                         "origin": "auto",
                         "onValue": "var src = get('switch_srcSelMain')\n\nvar val = Math.pow(10, value/20)\nsend('/adm/obj/' + src + '/gain/', val)",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/gain', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/gain', 'release')\n}",
                         "lock": false,
                         "knobSize": "auto",
                         "horizontal": false,
@@ -8148,7 +8184,7 @@
                         "origin": 0,
                         "onValue": "var src = get('switch_srcSelMain')\nvar elev = get('spat_radiation_elevation')\nvar dist = get('spat_radiation_distance')\nsend('/adm/obj/' + src + '/aed', value, elev, dist )",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -8200,7 +8236,7 @@
                         "origin": 0,
                         "onValue": "var src = get('switch_srcSelMain')\nvar azim = get('spat_radiation_azimuth')\nvar dist = get('spat_radiation_distance')\nsend('/adm/obj/' + src + '/aed', azim, value, dist)",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -8252,7 +8288,7 @@
                         "origin": 0,
                         "onValue": "var src = get('switch_srcSelMain')\nvar elev = get('spat_radiation_elevation')\nvar azim = get('spat_radiation_azimuth')\nsend('/adm/obj/' + src + '/aed', azim, elev, value)",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -8304,7 +8340,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/yaw', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/yaw', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -8356,7 +8392,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/pitch', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/pitch', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -8408,7 +8444,7 @@
                         "origin": 80,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aperture', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aperture', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -8550,7 +8586,7 @@
                     "origin": 100,
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/dg', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/dg', 'release')\n}",
                     "lock": false
                   },
                   {
@@ -8602,7 +8638,7 @@
                     "origin": 30,
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/warmth', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/warmth', 'release')\n}",
                     "lock": false
                   },
                   {
@@ -8654,7 +8690,7 @@
                     "origin": 30,
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/bril', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/bril', 'release')\n}",
                     "lock": false
                   },
                   {
@@ -8706,7 +8742,7 @@
                     "origin": 48,
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/prer', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/prer', 'release')\n}",
                     "lock": false
                   },
                   {
@@ -8758,7 +8794,7 @@
                     "origin": 34,
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/revp', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/revp', 'release')\n}",
                     "lock": false
                   },
                   {
@@ -8810,7 +8846,7 @@
                     "origin": 25,
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/env', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/env', 'release')\n}",
                     "lock": false
                   }
                 ],
@@ -8991,7 +9027,7 @@
                     "origin": "auto",
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/early/width', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/early/width', 'release')\n}",
                     "lock": false,
                     "knobSize": "auto",
                     "horizontal": true,
@@ -9092,7 +9128,7 @@
                     "origin": "auto",
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/prevf', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/prevf', 'release')\n}",
                     "lock": false,
                     "knobSize": "auto",
                     "horizontal": true,
@@ -9355,7 +9391,7 @@
                                 "origin": 177,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + 'axis/fl', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/axis/fl', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9407,7 +9443,7 @@
                                 "origin": 5657,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/axis/fh', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/axis/fh', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9459,7 +9495,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/axis/Gl', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/axis/Gl', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9511,7 +9547,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/axis/Gm', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/axis/Gm', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9563,7 +9599,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/axis/Gh', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/axis/Gh', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9615,7 +9651,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/axis/G0', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/axis/G0', 'release')\n}",
                                 "lock": false
                               }
                             ],
@@ -9758,7 +9794,7 @@
                                 "origin": 177,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/omni/fl', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/omni/fl', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9810,7 +9846,7 @@
                                 "origin": 5657,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/omni/fhh', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/omni/fh', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9862,7 +9898,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/omni/Gl', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/omni/Gl', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9914,7 +9950,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/omni/Gm', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/omni/Gm', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -9966,7 +10002,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/omni/Gh', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/omni/Gh', 'release')\n}",
                                 "lock": false
                               },
                               {
@@ -10018,7 +10054,7 @@
                                 "origin": 0,
                                 "onValue": "",
                                 "onCreate": "",
-                                "onTouch": "",
+                                "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/omni/G0', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/omni/G0', 'release')\n}",
                                 "lock": false
                               }
                             ],
@@ -10172,7 +10208,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/yaw', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/yaw', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10224,7 +10260,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/pitch', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/pitch', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10276,7 +10312,7 @@
                         "origin": 80,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aperture', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aperture', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10372,7 +10408,7 @@
                         "origin": 0,
                         "onValue": "var src = get('switch_srcSelMain')\nvar elev = get('spat_radiation_elevation')\nvar dist = get('spat_radiation_distance')\nsend('/adm/obj/' + src + '/aed', value, elev, dist )",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10424,7 +10460,7 @@
                         "origin": 0,
                         "onValue": "var src = get('switch_srcSelMain')\nvar azim = get('spat_radiation_azimuth')\nvar dist = get('spat_radiation_distance')\nsend('/adm/obj/' + src + '/aed', azim, value, dist)",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10476,7 +10512,7 @@
                         "origin": 0,
                         "onValue": "var src = get('switch_srcSelMain')\nvar elev = get('spat_radiation_elevation')\nvar azim = get('spat_radiation_azimuth')\nsend('/adm/obj/' + src + '/aed', azim, elev, value)",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/aed', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/aed', 'release')\n}",
                         "lock": false
                       }
                     ],
@@ -10619,7 +10655,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/rotx', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/rotx', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10671,7 +10707,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/roty', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/roty', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10723,7 +10759,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/rotz', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/rotz', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10775,7 +10811,7 @@
                         "origin": 1,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/scale', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/scale', 'release')\n}",
                         "lock": false
                       }
                     ],
@@ -10878,7 +10914,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/xyz', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/xyz', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10930,7 +10966,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/xyz', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/xyz', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -10982,7 +11018,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/xyz', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/xyz', 'release')\n}",
                         "lock": false
                       }
                     ],
@@ -11229,7 +11265,7 @@
                     "origin": "auto",
                     "onValue": "",
                     "onCreate": "",
-                    "onTouch": "",
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/radius', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/radius', 'release')\n}",
                     "lock": false
                   },
                   {
@@ -11375,7 +11411,7 @@
                     "sensitivity": 1,
                     "steps": "",
                     "origin": "auto",
-                    "onTouch": ""
+                    "onTouch": "var src =  get('switch_srcSelMain')\nif (event.type == 'start')\n{\nsend('/adm/obj/' + src + '/drop/value', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/adm/obj/' + src + '/drop/value', 'release')\n}"
                   },
                   {
                     "type": "dropdown",
@@ -11563,7 +11599,7 @@
             "tabs": [
               {
                 "type": "tab",
-                "id": "tab_rvb1",
+                "id": "tab_rvbGeneral",
                 "visible": true,
                 "interaction": true,
                 "comments": "",
@@ -11604,7 +11640,7 @@
                     "interaction": true,
                     "comments": "",
                     "width": "100%",
-                    "height": "60%",
+                    "height": "100%",
                     "expand": "false",
                     "colorText": "auto",
                     "colorWidget": "auto",
@@ -11733,7 +11769,7 @@
                         "origin": 2500,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/size', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/size', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -11785,7 +11821,7 @@
                         "origin": 0,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverb/gain', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverb/gain', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -11837,7 +11873,7 @@
                         "origin": 81,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverb/start', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverb/start', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -11889,7 +11925,7 @@
                         "origin": 1,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverb/factor', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverb/factor', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -11990,213 +12026,6 @@
                     "onValue": "",
                     "onCreate": "",
                     "lock": false
-                  },
-                  {
-                    "type": "panel",
-                    "top": "60%",
-                    "left": "0%",
-                    "id": "panel_@{this.variables.para}",
-                    "visible": true,
-                    "interaction": true,
-                    "comments": "",
-                    "width": "100%",
-                    "height": "40%",
-                    "expand": "false",
-                    "colorText": "auto",
-                    "colorWidget": "auto",
-                    "colorStroke": "auto",
-                    "colorFill": "auto",
-                    "alphaStroke": "auto",
-                    "alphaFillOff": "auto",
-                    "alphaFillOn": "auto",
-                    "lineWidth": "auto",
-                    "padding": "auto",
-                    "html": "",
-                    "css": "",
-                    "colorBg": "auto",
-                    "layout": "default",
-                    "justify": "start",
-                    "gridTemplate": "",
-                    "contain": true,
-                    "scroll": true,
-                    "innerPadding": true,
-                    "verticalTabs": false,
-                    "variables": {
-                      "para": "perceptualfactorsrvb"
-                    },
-                    "traversing": false,
-                    "value": "",
-                    "default": "",
-                    "linkId": "",
-                    "address": "auto",
-                    "preArgs": "",
-                    "typeTags": "",
-                    "decimals": 2,
-                    "target": "",
-                    "ignoreDefaults": false,
-                    "bypass": false,
-                    "widgets": [
-                      {
-                        "type": "knob",
-                        "top": "0%",
-                        "left": "0%",
-                        "id": "knob_@{parent.variables.para}Reverberance",
-                        "visible": true,
-                        "interaction": true,
-                        "comments": "",
-                        "width": "33.33%",
-                        "height": "100%",
-                        "expand": "false",
-                        "colorText": "auto",
-                        "colorWidget": "auto",
-                        "colorStroke": "auto",
-                        "colorFill": "auto",
-                        "alphaStroke": 1,
-                        "alphaFillOff": 0.15,
-                        "alphaFillOn": 1,
-                        "lineWidth": "auto",
-                        "padding": "auto",
-                        "html": "<div class=\"value\">@{this}</div>\n<div class=\"label\">Reverberance</div>",
-                        "css": ".label, .value {\n  position: absolute;\n  left:0;\n  width: 100%;\n  pointer-events: none;\n}\n.label {\n  bottom: 1em;\n}\n.value {\n top: 50%;\n margin-top: -15rem\n}",
-                        "value": "",
-                        "default": 65,
-                        "linkId": "",
-                        "address": "/room/@{switch_roomSelect}/reverberance",
-                        "preArgs": "",
-                        "typeTags": "",
-                        "decimals": 3,
-                        "target": "",
-                        "ignoreDefaults": false,
-                        "bypass": false,
-                        "mode": "vertical",
-                        "doubleTap": true,
-                        "design": "default",
-                        "pips": false,
-                        "dashed": false,
-                        "angle": 270,
-                        "spring": false,
-                        "range": {
-                          "min": 5,
-                          "max": 100
-                        },
-                        "logScale": false,
-                        "sensitivity": 1,
-                        "steps": "",
-                        "origin": 65,
-                        "onValue": "",
-                        "onCreate": "",
-                        "onTouch": "",
-                        "lock": false
-                      },
-                      {
-                        "type": "knob",
-                        "top": "0%",
-                        "left": "33.33%",
-                        "id": "knob_@{parent.variables.para}Heaviness",
-                        "visible": true,
-                        "interaction": true,
-                        "comments": "",
-                        "width": "33.33%",
-                        "height": "100%",
-                        "expand": "false",
-                        "colorText": "auto",
-                        "colorWidget": "auto",
-                        "colorStroke": "auto",
-                        "colorFill": "auto",
-                        "alphaStroke": 1,
-                        "alphaFillOff": 0.15,
-                        "alphaFillOn": 1,
-                        "lineWidth": "auto",
-                        "padding": "auto",
-                        "html": "<div class=\"value\">@{this}</div>\n<div class=\"label\">Heaviness</div>",
-                        "css": ".label, .value {\n  position: absolute;\n  left:0;\n  width: 100%;\n  pointer-events: none;\n}\n.label {\n  bottom: 1em;\n}\n.value {\n top: 50%;\n margin-top: -15rem\n}",
-                        "value": "",
-                        "default": 25,
-                        "linkId": "",
-                        "address": "/room/@{switch_roomSelect}/heaviness",
-                        "preArgs": "",
-                        "typeTags": "",
-                        "decimals": 3,
-                        "target": "",
-                        "ignoreDefaults": false,
-                        "bypass": false,
-                        "mode": "vertical",
-                        "doubleTap": true,
-                        "design": "default",
-                        "pips": false,
-                        "dashed": false,
-                        "angle": 270,
-                        "spring": false,
-                        "range": {
-                          "min": 5,
-                          "max": 50
-                        },
-                        "logScale": false,
-                        "sensitivity": 1,
-                        "steps": "",
-                        "origin": 25,
-                        "onValue": "",
-                        "onCreate": "",
-                        "onTouch": "",
-                        "lock": false
-                      },
-                      {
-                        "type": "knob",
-                        "top": "0%",
-                        "left": "66.66%",
-                        "id": "knob_@{parent.variables.para}Liveness",
-                        "visible": true,
-                        "interaction": true,
-                        "comments": "",
-                        "width": "33.33%",
-                        "height": "100%",
-                        "expand": "false",
-                        "colorText": "auto",
-                        "colorWidget": "auto",
-                        "colorStroke": "auto",
-                        "colorFill": "auto",
-                        "alphaStroke": 1,
-                        "alphaFillOff": 0.15,
-                        "alphaFillOn": 1,
-                        "lineWidth": "auto",
-                        "padding": "auto",
-                        "html": "<div class=\"value\">@{this}</div>\n<div class=\"label\">Liveness</div>",
-                        "css": ".label, .value {\n  position: absolute;\n  left:0;\n  width: 100%;\n  pointer-events: none;\n}\n.label {\n  bottom: 1em;\n}\n.value {\n top: 50%;\n margin-top: -15rem\n}",
-                        "value": "",
-                        "default": 35,
-                        "linkId": "",
-                        "address": "/room/@{switch_roomSelect}/liveness",
-                        "preArgs": "",
-                        "typeTags": "",
-                        "decimals": 3,
-                        "target": "",
-                        "ignoreDefaults": false,
-                        "bypass": false,
-                        "mode": "vertical",
-                        "doubleTap": true,
-                        "design": "default",
-                        "pips": false,
-                        "dashed": false,
-                        "angle": 270,
-                        "spring": false,
-                        "range": {
-                          "min": 5,
-                          "max": 50
-                        },
-                        "logScale": false,
-                        "sensitivity": 1,
-                        "steps": "",
-                        "origin": 35,
-                        "onValue": "",
-                        "onCreate": "",
-                        "onTouch": "",
-                        "lock": false
-                      }
-                    ],
-                    "tabs": [],
-                    "onValue": "",
-                    "onCreate": "",
-                    "lock": false
                   }
                 ],
                 "tabs": [],
@@ -12206,7 +12035,203 @@
               },
               {
                 "type": "tab",
-                "id": "tab_rvb2",
+                "lock": false,
+                "id": "tab_rvbPerceptual",
+                "visible": true,
+                "interaction": true,
+                "comments": "",
+                "colorText": "auto",
+                "colorWidget": "auto",
+                "colorFill": "auto",
+                "padding": "auto",
+                "html": "",
+                "css": "",
+                "colorBg": "auto",
+                "layout": "horizontal",
+                "justify": "start",
+                "gridTemplate": "",
+                "contain": true,
+                "scroll": true,
+                "innerPadding": true,
+                "verticalTabs": false,
+                "label": "Perceptual Factors",
+                "variables": "@{parent.variables}",
+                "traversing": false,
+                "value": "",
+                "default": "",
+                "linkId": "",
+                "address": "auto",
+                "preArgs": "",
+                "typeTags": "",
+                "decimals": 2,
+                "target": "",
+                "ignoreDefaults": false,
+                "bypass": false,
+                "onCreate": "",
+                "onValue": "",
+                "widgets": [
+                  {
+                    "type": "knob",
+                    "top": "13.73%",
+                    "left": "29.41%",
+                    "id": "knob_rvbReverberance",
+                    "visible": true,
+                    "interaction": true,
+                    "comments": "",
+                    "width": "33.33%",
+                    "height": "100%",
+                    "expand": "false",
+                    "colorText": "auto",
+                    "colorWidget": "auto",
+                    "colorStroke": "auto",
+                    "colorFill": "auto",
+                    "alphaStroke": 1,
+                    "alphaFillOff": 0.15,
+                    "alphaFillOn": 1,
+                    "lineWidth": "auto",
+                    "padding": "auto",
+                    "html": "<div class=\"value\">@{this}</div>\n<div class=\"label\">Reverberance</div>",
+                    "css": ".label, .value {\n  position: absolute;\n  left:0;\n  width: 100%;\n  pointer-events: none;\n}\n.label {\n  bottom: 1em;\n}\n.value {\n top: 50%;\n margin-top: -15rem\n}",
+                    "value": "",
+                    "default": 65,
+                    "linkId": "",
+                    "address": "/room/@{switch_roomSelect}/reverberance",
+                    "preArgs": "",
+                    "typeTags": "",
+                    "decimals": 3,
+                    "target": "",
+                    "ignoreDefaults": false,
+                    "bypass": false,
+                    "mode": "vertical",
+                    "doubleTap": true,
+                    "design": "default",
+                    "pips": false,
+                    "dashed": false,
+                    "angle": 270,
+                    "spring": false,
+                    "range": {
+                      "min": 5,
+                      "max": 100
+                    },
+                    "logScale": false,
+                    "sensitivity": 1,
+                    "steps": "",
+                    "origin": 65,
+                    "onValue": "",
+                    "onCreate": "",
+                    "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverberancee', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverberancee', 'release')\n}",
+                    "lock": false
+                  },
+                  {
+                    "type": "knob",
+                    "top": "13.73%",
+                    "left": "62.74%",
+                    "id": "knob_rvbHeaviness",
+                    "visible": true,
+                    "interaction": true,
+                    "comments": "",
+                    "width": "33.33%",
+                    "height": "100%",
+                    "expand": "false",
+                    "colorText": "auto",
+                    "colorWidget": "auto",
+                    "colorStroke": "auto",
+                    "colorFill": "auto",
+                    "alphaStroke": 1,
+                    "alphaFillOff": 0.15,
+                    "alphaFillOn": 1,
+                    "lineWidth": "auto",
+                    "padding": "auto",
+                    "html": "<div class=\"value\">@{this}</div>\n<div class=\"label\">Heaviness</div>",
+                    "css": ".label, .value {\n  position: absolute;\n  left:0;\n  width: 100%;\n  pointer-events: none;\n}\n.label {\n  bottom: 1em;\n}\n.value {\n top: 50%;\n margin-top: -15rem\n}",
+                    "value": "",
+                    "default": 25,
+                    "linkId": "",
+                    "address": "/room/@{switch_roomSelect}/heaviness",
+                    "preArgs": "",
+                    "typeTags": "",
+                    "decimals": 3,
+                    "target": "",
+                    "ignoreDefaults": false,
+                    "bypass": false,
+                    "mode": "vertical",
+                    "doubleTap": true,
+                    "design": "default",
+                    "pips": false,
+                    "dashed": false,
+                    "angle": 270,
+                    "spring": false,
+                    "range": {
+                      "min": 5,
+                      "max": 50
+                    },
+                    "logScale": false,
+                    "sensitivity": 1,
+                    "steps": "",
+                    "origin": 25,
+                    "onValue": "",
+                    "onCreate": "",
+                    "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/heaviness', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/heaviness', 'release')\n}",
+                    "lock": false
+                  },
+                  {
+                    "type": "knob",
+                    "top": "13.73%",
+                    "left": "96.07%",
+                    "id": "knob_rvbLiveness",
+                    "visible": true,
+                    "interaction": true,
+                    "comments": "",
+                    "width": "33.33%",
+                    "height": "100%",
+                    "expand": "false",
+                    "colorText": "auto",
+                    "colorWidget": "auto",
+                    "colorStroke": "auto",
+                    "colorFill": "auto",
+                    "alphaStroke": 1,
+                    "alphaFillOff": 0.15,
+                    "alphaFillOn": 1,
+                    "lineWidth": "auto",
+                    "padding": "auto",
+                    "html": "<div class=\"value\">@{this}</div>\n<div class=\"label\">Liveness</div>",
+                    "css": ".label, .value {\n  position: absolute;\n  left:0;\n  width: 100%;\n  pointer-events: none;\n}\n.label {\n  bottom: 1em;\n}\n.value {\n top: 50%;\n margin-top: -15rem\n}",
+                    "value": "",
+                    "default": 35,
+                    "linkId": "",
+                    "address": "/room/@{switch_roomSelect}/liveness",
+                    "preArgs": "",
+                    "typeTags": "",
+                    "decimals": 3,
+                    "target": "",
+                    "ignoreDefaults": false,
+                    "bypass": false,
+                    "mode": "vertical",
+                    "doubleTap": true,
+                    "design": "default",
+                    "pips": false,
+                    "dashed": false,
+                    "angle": 270,
+                    "spring": false,
+                    "range": {
+                      "min": 5,
+                      "max": 50
+                    },
+                    "logScale": false,
+                    "sensitivity": 1,
+                    "steps": "",
+                    "origin": 35,
+                    "onValue": "",
+                    "onCreate": "",
+                    "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/liveness', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/liveness', 'release')\n}",
+                    "lock": false
+                  }
+                ],
+                "tabs": []
+              },
+              {
+                "type": "tab",
+                "id": "tab_rvbRoomResponse",
                 "visible": true,
                 "interaction": true,
                 "comments": "",
@@ -12242,7 +12267,7 @@
                     "type": "panel",
                     "top": "0%",
                     "left": "0%",
-                    "id": "panel_@{this.variables.para}",
+                    "id": "panel_roomResponse",
                     "visible": true,
                     "interaction": true,
                     "comments": "",
@@ -12269,7 +12294,7 @@
                     "innerPadding": true,
                     "verticalTabs": false,
                     "variables": {
-                      "para": "roomresponse"
+                      "para": "rr"
                     },
                     "traversing": false,
                     "value": "",
@@ -12287,7 +12312,7 @@
                         "type": "knob",
                         "top": "0%",
                         "left": "0%",
-                        "id": "knob_@{parent.variables.para}EarlyMin",
+                        "id": "knob_rvbEarlyMin",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12322,24 +12347,21 @@
                         "dashed": false,
                         "angle": 270,
                         "spring": false,
-                        "range": {
-                          "min": 1,
-                          "max": "#{@{knob_roomresponse_earlymax}-0.1}"
-                        },
+                        "range": "{\n  \"min\": 1,\n  \"max\": #{@{knob_rvbEarlyMax}-0.1}\n}",
                         "logScale": true,
                         "sensitivity": 1,
                         "steps": "",
-                        "origin": 24.2,
+                        "origin": 1,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/early/mine', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/early/min', 'release')\n}",
                         "lock": false
                       },
                       {
                         "type": "knob",
                         "top": "0%",
                         "left": "33.33%",
-                        "id": "knob_@{parent.variables.para}EarlyMax",
+                        "id": "knob_rvbEarlyMax",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12375,7 +12397,7 @@
                         "angle": 270,
                         "spring": false,
                         "range": {
-                          "min": "@{knob_roomresponse_earlymin}",
+                          "min": "@{knob_rvbEarlyMin}",
                           "max": 120
                         },
                         "logScale": true,
@@ -12384,14 +12406,14 @@
                         "origin": 40,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/early/max', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/early/max', 'release')\n}",
                         "lock": false
                       },
                       {
                         "type": "knob",
                         "top": "0%",
                         "left": "66.66%",
-                        "id": "knob_@{parent.variables.para}EarlyDist",
+                        "id": "knob_rvbEarlyDist",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12436,14 +12458,14 @@
                         "origin": 0.5,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/early/dist', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/early/dist', 'release')\n}",
                         "lock": false
                       },
                       {
                         "type": "knob",
                         "top": "33.33%",
                         "left": "0%",
-                        "id": "knob_@{parent.variables.para}EarlyShape",
+                        "id": "knob_rvbEarlyShape",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12488,14 +12510,14 @@
                         "origin": 0.5,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/early/shape', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/early/shape', 'release')\n}",
                         "lock": false
                       },
                       {
                         "type": "knob",
                         "top": "33.33%",
                         "left": "33.33%",
-                        "id": "knob_@{parent.variables.para}ClusterMin",
+                        "id": "knob_rvbClusterMin",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12531,8 +12553,8 @@
                         "angle": 270,
                         "spring": false,
                         "range": {
-                          "min": "#{@{knob_@{parent.variables.para}_earlymax}+0.1}",
-                          "max": "#{@{knob_@{parent.variables.para}_clustermax}-0.1}"
+                          "min": "#{@{rvbEarlyMax}+0.1}",
+                          "max": "#{@{knob_rvbClusterMax}-0.1}"
                         },
                         "logScale": true,
                         "sensitivity": 1,
@@ -12540,14 +12562,14 @@
                         "origin": 24.2,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/cluster/min', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/cluster/mine', 'release')\n}",
                         "lock": false
                       },
                       {
                         "type": "knob",
                         "top": "33.33%",
                         "left": "66.66%",
-                        "id": "knob_@{parent.variables.para}ClusterMax",
+                        "id": "knob_rvbClusterMax",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12583,7 +12605,7 @@
                         "angle": 270,
                         "spring": false,
                         "range": {
-                          "min": "@{knob_@{parent.variables.para}_earlymax}",
+                          "min": "@{knob_rvbEarlyMax}",
                           "max": 300
                         },
                         "logScale": true,
@@ -12592,14 +12614,14 @@
                         "origin": 40,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/cluster/max', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/cluster/max', 'release')\n}",
                         "lock": false
                       },
                       {
                         "type": "knob",
                         "top": "66.66%",
                         "left": "0%",
-                        "id": "knob_@{parent.variables.para}ClusterDist",
+                        "id": "knob_rvbClusterDist",
                         "visible": true,
                         "interaction": true,
                         "comments": "",
@@ -12644,7 +12666,7 @@
                         "origin": 0.5,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/cluster/dist', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/cluster/dist', 'release')\n}",
                         "lock": false
                       }
                     ],
@@ -12661,7 +12683,7 @@
               },
               {
                 "type": "tab",
-                "id": "tab_rvb3",
+                "id": "tab_rvbOptions",
                 "visible": true,
                 "interaction": true,
                 "comments": "",
@@ -12679,7 +12701,7 @@
                 "scroll": true,
                 "innerPadding": true,
                 "verticalTabs": false,
-                "label": "Reverb options",
+                "label": "Reverb options & Crossover",
                 "variables": "@{parent.variables}",
                 "traversing": false,
                 "value": "",
@@ -12787,7 +12809,7 @@
                         "origin": 177,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverb/fle', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverb/fl', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -12839,7 +12861,7 @@
                         "origin": 5657,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverb/fh', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverb/fh', 'release')\n}",
                         "lock": false
                       }
                     ],
@@ -13030,7 +13052,7 @@
                         "origin": 1,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/reverb/modal/density', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/reverb/modal/density', 'release')\n}",
                         "lock": false
                       },
                       {
@@ -13082,7 +13104,7 @@
                         "origin": 10000,
                         "onValue": "",
                         "onCreate": "",
-                        "onTouch": "",
+                        "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/air/freq', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/air/freq', 'release')\n}",
                         "lock": false
                       }
                     ],
@@ -13378,7 +13400,7 @@
                 "origin": "auto",
                 "onValue": "var src = get('switch_roomSelect')\n\nvar val = Math.pow(10, value/20)\nsend('/room/' + src + '/gain', val)",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/gain', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/gain', 'release')\n}",
                 "lock": false
               }
             ],
@@ -13478,7 +13500,7 @@
                 "origin": 0,
                 "onValue": "",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/x', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/x', 'release')\n}",
                 "lock": false
               },
               {
@@ -13530,7 +13552,7 @@
                 "origin": 0,
                 "onValue": "",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/y', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/y', 'release')\n}",
                 "lock": false
               },
               {
@@ -13582,7 +13604,7 @@
                 "origin": 0,
                 "onValue": "",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/z', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/z', 'release')\n}",
                 "lock": false
               },
               {
@@ -13634,7 +13656,7 @@
                 "origin": 0,
                 "onValue": "",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/yaw', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/yaw', 'release')\n}",
                 "lock": false
               },
               {
@@ -13686,7 +13708,7 @@
                 "origin": 0,
                 "onValue": "",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/pitch', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/pitch', 'release')\n}",
                 "lock": false
               },
               {
@@ -13738,7 +13760,7 @@
                 "origin": 0,
                 "onValue": "",
                 "onCreate": "",
-                "onTouch": "",
+                "onTouch": "var src =  get('switch_roomSelect')\nif (event.type == 'start')\n{\nsend('/room/' + src + '/roll', 'touch')\n}\nelse if (event.type == 'stop')\n{\nsend('/room/' + src + '/roll', 'release')\n}",
                 "lock": false
               }
             ],
@@ -13891,7 +13913,7 @@
                 "decimals": 2,
                 "target": "",
                 "ignoreDefaults": false,
-                "bypass": false,
+                "bypass": true,
                 "layout": "grid",
                 "gridTemplate": 8,
                 "values": {
@@ -14083,7 +14105,7 @@
                 "decimals": 1,
                 "target": "",
                 "ignoreDefaults": false,
-                "bypass": false,
+                "bypass": true,
                 "mode": "vertical",
                 "doubleTap": true,
                 "design": "default",
@@ -14153,7 +14175,7 @@
                 "decimals": 2,
                 "target": "",
                 "ignoreDefaults": false,
-                "bypass": false,
+                "bypass": true,
                 "widgets": [
                   {
                     "type": "input",
@@ -15166,8 +15188,8 @@
             "linkId": "",
             "address": "/global/project/adm/obj/count",
             "preArgs": "",
-            "typeTags": "",
-            "decimals": 2,
+            "typeTags": "i",
+            "decimals": 0,
             "target": "",
             "ignoreDefaults": false,
             "bypass": false,
