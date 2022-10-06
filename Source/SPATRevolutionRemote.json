@@ -14058,7 +14058,7 @@
                 "left": "0%",
                 "id": "knob_@{parent.variables.para}_time",
                 "visible": true,
-                "interaction": "#{@{button_timeroff} == 0}",
+                "interaction": "#{@{button_timeroff} == 1}",
                 "comments": "",
                 "width": "30%",
                 "height": "40%",
